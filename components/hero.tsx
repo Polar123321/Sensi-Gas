@@ -5,6 +5,19 @@ import { Activity, ArrowDown, BellRing, BookOpen, Code2, Cpu, Flame, Play, Radio
 import { useEffect, useState } from "react";
 import { StatusDot } from "./ui";
 
+function useBinaryField(chars: number) {
+  const [text, setText] = useState("");
+  useEffect(() => {
+    let out = "";
+    for (let i = 0; i < chars; i++) {
+      out += Math.random() > 0.5 ? "1" : "0";
+      if ((i + 1) % 8 === 0) out += " ";
+    }
+    setText(out);
+  }, [chars]);
+  return text;
+}
+
 const particles = Array.from({ length: 18 }, (_, i) => ({ left: `${8 + ((i * 37) % 86)}%`, top: `${10 + ((i * 53) % 78)}%`, dx: `${(i % 2 ? 1 : -1) * (12 + i)}px`, dy: `${-15 - (i % 5) * 9}px`, dur: `${3 + (i % 4)}s` }));
 const features = [
   { id: "mq4", label: "Sensor MQ-4", Icon: Radio },
@@ -28,6 +41,16 @@ function FeatureItem({ feature, visible }: { feature: (typeof features)[number];
 export function Hero() {
   const [featureOffset, setFeatureOffset] = useState(0);
   const [featuresVisible, setFeaturesVisible] = useState(true);
+  const binaryField = useBinaryField(26000);
+  function revealBinary(e: React.MouseEvent<HTMLElement>) {
+    const rect = e.currentTarget.getBoundingClientRect();
+    e.currentTarget.style.setProperty("--bx", `${e.clientX - rect.left}px`);
+    e.currentTarget.style.setProperty("--by", `${e.clientY - rect.top}px`);
+  }
+  function hideBinary(e: React.MouseEvent<HTMLElement>) {
+    e.currentTarget.style.setProperty("--bx", "-9999px");
+    e.currentTarget.style.setProperty("--by", "-9999px");
+  }
   useEffect(() => {
     let swapTimer: number | undefined;
     const cycle = () => {
@@ -45,9 +68,10 @@ export function Hero() {
   }, []);
   const scroll = (id: string) => document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
   return (
-    <section id="inicio" className="hero-mesh relative min-h-[760px] overflow-hidden pb-44 pt-28 sm:min-h-[860px] sm:pb-56 sm:pt-32 lg:min-h-[940px] lg:pb-64">
+    <section id="inicio" onMouseMove={revealBinary} onMouseLeave={hideBinary} className="hero-mesh relative min-h-[760px] overflow-hidden pb-44 pt-28 sm:min-h-[860px] sm:pb-56 sm:pt-32 lg:min-h-[940px] lg:pb-64">
       <div className="mesh-blob mesh-blob-one"/><div className="mesh-blob mesh-blob-two"/><div className="mesh-blob mesh-blob-three"/>
       <div className="particles">{particles.map((p,i)=><i key={i} className="particle" style={{ left:p.left, top:p.top, "--dx":p.dx, "--dy":p.dy, "--dur":p.dur } as React.CSSProperties}/>)}</div>
+      <div className="binary-field" aria-hidden="true">{binaryField}</div>
       <div className="container-shell relative z-10 flex flex-col items-center text-center">
         <motion.div initial={{ opacity:0,y:28 }} animate={{ opacity:1,y:0 }} transition={{ duration:.8 }} className="hero-intro flex max-w-4xl flex-col items-center">
           <div className="badge mb-6 border-white/20 bg-white/10 text-center text-white backdrop-blur-xl sm:mb-7"><StatusDot /><span>MQ-4 + ESP32 · detecção de GLP</span></div>

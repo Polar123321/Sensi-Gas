@@ -4,16 +4,16 @@ export const navItems = [
 ] as const;
 
 export const technologies = [
-  ["ESP32 DevKit V1", "Unidade de controle responsável por interpretar as leituras e coordenar as respostas."],
-  ["Sensor MQ-4", "Sensor semicondutor utilizado no protótipo para indicar a presença de GLP e outros gases inflamáveis avaliados."],
+  ["ESP32 DevKit V1", "Unidade de controle: interpreta as leituras e coordena as respostas do circuito."],
+  ["Sensor MQ-4", "Elemento sensor semicondutor: indica a presença de GLP e outros gases inflamáveis avaliados."],
   ["Eletrônica embarcada", "Integração entre sensores, atuadores e lógica de controle em um circuito compacto."],
-  ["Buzzer", "Emissor do alerta sonoro quando a leitura supera o limite configurado."],
+  ["Buzzer", "Atuador sonoro: dispara quando a leitura ultrapassa o limite configurado."],
   ["LEDs", "Sinalização visual dos estados seguro, atenção e risco."],
-  ["Protoboard", "Base de montagem que permite testar e ajustar o circuito experimental."],
-  ["Resistores", "Componentes utilizados na adequação elétrica e proteção do circuito."],
+  ["Protoboard", "Base de montagem: permite testar e ajustar o circuito experimental."],
+  ["Resistores", "Componentes passivos: adequação elétrica e proteção do circuito."],
   ["Cabos jumper", "Conexões entre o ESP32, os sensores e os dispositivos de saída."],
   ["Automação", "Lógica de resposta que relaciona as leituras do ambiente às ações do sistema."],
-  ["ESP32 / Arduino C++", "Programação das leituras, limites, alertas e estados do protótipo."],
+  ["ESP32 / Arduino C++", "Firmware: leituras, limites, alertas e estados do protótipo."],
 ] as const;
 
 export const methodology = [

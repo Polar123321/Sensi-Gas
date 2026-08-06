@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
-import type { MouseEvent, ReactNode } from "react";
+import type { ReactNode } from "react";
 
 export function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; className?: string; delay?: number }) {
   const reduce = useReducedMotion();
@@ -12,21 +12,21 @@ export function Reveal({ children, className = "", delay = 0 }: { children: Reac
   );
 }
 
-export function SpotlightCard({ children, className = "" }: { children: ReactNode; className?: string }) {
-  function move(event: MouseEvent<HTMLDivElement>) {
-    const rect = event.currentTarget.getBoundingClientRect();
-    event.currentTarget.style.setProperty("--mx", `${event.clientX - rect.left}px`);
-    event.currentTarget.style.setProperty("--my", `${event.clientY - rect.top}px`);
-  }
-  return <div className={`card ${className}`} onMouseMove={move}>{children}</div>;
+export function SpotlightCard({ children, className = "", code }: { children: ReactNode; className?: string; code?: string }) {
+  return (
+    <div className={`plate ${className}`}>
+      {code && <span className="plate-code">{code}</span>}
+      {children}
+    </div>
+  );
 }
 
 export function SectionHeading({ eyebrow, title, text, center = false }: { eyebrow: string; title: string; text?: string; center?: boolean }) {
   return (
     <Reveal className={center ? "text-center flex flex-col items-center" : ""}>
-      <span className="section-kicker">{eyebrow}</span>
-      <h2 className="section-title">{title}</h2>
-      {text && <p className="lead">{text}</p>}
+      <span className="kicker2">{eyebrow}</span>
+      <h2 className="title2">{title}</h2>
+      {text && <p className="dossier-lead">{text}</p>}
     </Reveal>
   );
 }
