@@ -10,6 +10,8 @@ import { SafetyModal } from "@/components/safety-modal";
 import { Reveal, SectionHeading, SensorLogo, SpotlightCard } from "@/components/ui";
 import { futureItems, methodology, team, technologies, navItems } from "@/data/content";
 
+const basePath = process.env.GITHUB_ACTIONS === "true" ? "/Sensi-Gas" : "";
+
 const problemCards = [
   [Flame,"Risco de incêndio","O contato do gás acumulado com uma fonte de ignição pode iniciar um incêndio."],
   [Zap,"Risco de explosão","Em determinadas condições, uma mistura inflamável confinada pode provocar explosões."],
@@ -103,8 +105,8 @@ export default function Home() {
           <div><h2 className="text-xs uppercase tracking-widest text-slate-500">Projeto</h2><p className="mt-5 text-sm leading-6 text-slate-400">Escola Doutor José Fernandes de Melo<br/>Pau dos Ferros<br/>2026</p></div>
           <div className="relative mt-12 flex max-w-sm items-center gap-3 rounded-2xl border border-white/10 bg-white/[.025] p-4 pr-14 text-sm leading-6 text-slate-400 sm:pr-4">
             <p>Nosso site é código aberto! Dê uma olhada no GitHub.</p>
-            <Image src="/thumbs-up-transparent.png" alt="Emoji sorridente fazendo sinal de positivo" width={1209} height={1153} className="absolute -right-1 -top-16 h-auto w-20 -rotate-[12deg] drop-shadow-[0_14px_24px_rgba(245,190,35,.16)] sm:-right-2 sm:-top-20 sm:w-24"/>
-            <a href="https://github.com/Polar/sensigas" target="_blank" rel="noreferrer" aria-label="Ver o código do SENSIGÁS no GitHub" title="Ver no GitHub" className="grid size-10 shrink-0 place-items-center rounded-full border border-white/10 bg-white/5 text-white transition hover:-translate-y-0.5 hover:border-cyan-300/40 hover:bg-cyan-300/10 hover:text-cyan-200"><GitHubIcon/></a>
+            <Image src={`${basePath}/thumbs-up-transparent.png`} alt="Emoji sorridente fazendo sinal de positivo" width={1209} height={1153} className="absolute -right-1 -top-16 h-auto w-20 -rotate-[12deg] drop-shadow-[0_14px_24px_rgba(245,190,35,.16)] sm:-right-2 sm:-top-20 sm:w-24"/>
+            <a href="https://github.com/Polar123321/Sensi-Gas" target="_blank" rel="noreferrer" aria-label="Ver o código do SENSIGÁS no GitHub" title="Ver no GitHub" className="grid size-10 shrink-0 place-items-center rounded-full border border-white/10 bg-white/5 text-white transition hover:-translate-y-0.5 hover:border-cyan-300/40 hover:bg-cyan-300/10 hover:text-cyan-200"><GitHubIcon/></a>
           </div>
         </div>
       </div>

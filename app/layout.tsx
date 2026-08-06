@@ -2,11 +2,13 @@ import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
+const basePath = process.env.GITHUB_ACTIONS === "true" ? "/Sensi-Gas" : "";
+
 const geist = Geist({ variable: "--font-geist", subsets: ["latin"], display: "swap" });
 const mono = Geist_Mono({ variable: "--font-mono", subsets: ["latin"], display: "swap" });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://sensigas.local"),
+  metadataBase: new URL("https://polar123321.github.io/Sensi-Gas/"),
   title: { default: "SENSIGÁS — Detecção inteligente de gás", template: "%s | SENSIGÁS" },
   description: "Protótipo científico com ESP32 DevKit V1 e sensor MQ-4 para detecção experimental de GLP e acionamento de alertas.",
   keywords: ["SENSIGÁS", "ESP32", "ESP32 DevKit V1", "sensor MQ-4", "sensor MQ-5", "detecção de gás", "projeto científico"],
@@ -21,7 +23,7 @@ export const metadata: Metadata = {
   },
   twitter: { card: "summary_large_image", title: "SENSIGÁS", description: "Tecnologia, ciência e segurança conectadas." },
   robots: { index: true, follow: true },
-  icons: { icon: "/icon.svg" },
+  icons: { icon: `${basePath}/icon.svg` },
 };
 
 export const viewport: Viewport = {
